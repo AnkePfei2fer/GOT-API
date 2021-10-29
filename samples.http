@@ -1,6 +1,6 @@
 ### GET all Characters
 
-GET GET http://localhost:3000/api/characters HTTP/1.1
+GET http://localhost:3000/api/characters HTTP/1.1
 
 ### GET a single Character
 
