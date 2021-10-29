@@ -22,4 +22,22 @@ Content-Type: application/json
     "name": "Night King",
     "dateOfBirth": "10.000 BC",
     "dayOfDeath": "305 AC"
-    }
+}
+
+### POST a new Field
+
+POST http://localhost:3000/api/characters/Tyrion Lannister HTTP/1.1
+Content-Type: application/json
+
+{
+    "house": "House of Lannister"
+}
+
+### DELETE a Field
+
+PUT http://localhost:3000/api/characters/Tyrion Lannister HTTP/1.1
+Content-Type: application/json
+
+{
+    "FirstSeen": "Winter is coming"
+}
