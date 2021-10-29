@@ -11,14 +11,15 @@ GET http://localhost:3000/api/characters/:name HTTP/1.1
 GET http://localhost:3000/api/characters/Bobby HTTP/1.1
 
 ### Delete a Character
-DELETE http://localhost:3000/api/characters/Bob HTTP/1.1
+DELETE http://localhost:3000/api/characters/Night King HTTP/1.1
+
 
 ### POST a Character
 POST http://localhost:3000/api/characters HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "Daenerys Targaryen",
-    "house": "Targaryen",
-    "dateOfBirth": "281 AC"
-}
+    "name": "Night King",
+    "dateOfBirth": "10.000 BC",
+    "dayOfDeath": "305 AC"
+    }
