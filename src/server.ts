@@ -58,22 +58,21 @@ app.delete('/api/characters/:name', async (request, response) => {
 });
 
 // Insert fields
-app.post('/api/characters/:name', async (request, response) => {
+
+app.patch('/api/characters/:name', async (request, response) => {
   const characterCollection = getCharacterCollection();
   const newField = request.body;
   const character = request.params.name;
-  const characterRequest = await characterCollection.findOne({
-    name: character,
-  });
-  if (characterRequest) {
-    await characterCollection.updateOne(
-      { name: character },
-      { $set: newField }
-    );
-    response.send('Updated');
-  } else {
+
+  const updated = await characterCollection.updateOne(
+    { name: character },
+    { $set: newField }
+  );
+  if (updated.matchedCount === 0) {
     response.status(404).send('Character not found');
+    return;
   }
+  response.send('Updated');
 });
 
 app.put('/api/characters/:name', async (request, response) => {

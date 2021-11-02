@@ -24,13 +24,13 @@ Content-Type: application/json
     "dayOfDeath": "305 AC"
 }
 
-### POST a new Field
+### PATCH a new Field
 
-POST http://localhost:3000/api/characters/Tyrion Lannister HTTP/1.1
+PATCH http://localhost:3000/api/characters/Tyrion Lannister HTTP/1.1
 Content-Type: application/json
 
 {
-    "house": "House of Lannister"
+    "firstSeen": "Winter is coming"
 }
 
 ### DELETE a Field
@@ -39,5 +39,5 @@ PUT http://localhost:3000/api/characters/Tyrion Lannister HTTP/1.1
 Content-Type: application/json
 
 {
-    "FirstSeen": "Winter is coming"
+    "firstSeen": ""
 }
