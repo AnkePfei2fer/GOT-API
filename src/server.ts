@@ -50,10 +50,46 @@ app.delete('/api/characters/:name', async (request, response) => {
     name: character,
   });
   if (!characterRequest) {
-    response.status(404).send('User not found.');
+    response.status(404).send('Character not found.');
   } else {
     characterCollection.deleteOne(characterRequest);
     response.send(`${character} was deleted.`);
+  }
+});
+
+// Insert fields
+
+app.patch('/api/characters/:name', async (request, response) => {
+  const characterCollection = getCharacterCollection();
+  const newField = request.body;
+  const character = request.params.name;
+
+  const updated = await characterCollection.updateOne(
+    { name: character },
+    { $set: newField }
+  );
+  if (updated.matchedCount === 0) {
+    response.status(404).send('Character not found');
+    return;
+  }
+  response.send('Updated');
+});
+
+app.put('/api/characters/:name', async (request, response) => {
+  const characterCollection = getCharacterCollection();
+  const deleteField = request.body;
+  const character = request.params.name;
+  const characterRequest = await characterCollection.findOne({
+    name: character,
+  });
+  if (characterRequest) {
+    await characterCollection.updateOne(
+      { name: character },
+      { $unset: deleteField }
+    );
+    response.send('Updated');
+  } else {
+    response.status(404).send('Character not found');
   }
 });
 
